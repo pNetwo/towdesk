@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font */
+  --default-font-family: "Nunito", serif;
+
+  /* */
+  --color-blue-100: #0c447c;
+  --color-blue-200: #185fa5;
+}
