@@ -2,21 +2,30 @@ import { useState } from "react";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 
-export function SignIn() {
+export function SignUp() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function onSubmit(e: React.SubmitEvent) {
     e.preventDefault();
 
-    console.log(email, password);
+    console.log(name, email, password, passwordConfirm);
   }
 
   return (
     <div className="w-lg flex flex-col bg-zinc-800 items-center py-8">
-      <h1 className="text-2xl mb-8">Bem-vindo de volta</h1>
+      <h1 className="text-2xl mb-8">Crie sua conta</h1>
       <form onSubmit={onSubmit} className="w-full px-4">
+        <Input
+          required
+          legend="Nome"
+          placeholder="Digite seu nome"
+          onChange={(e) => setName(e.target.value)}
+        />
+
         <Input
           required
           legend="E-mail"
@@ -29,20 +38,28 @@ export function SignIn() {
           required
           legend="Senha"
           type="password"
-          placeholder="usuario@empresa.com"
+          placeholder="Digite sua senha"
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        <Input
+          required
+          legend="Confirmação da Senha"
+          type="password"
+          placeholder="Confirme sua senha"
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+
         <Button type="submit" isLoading={isLoading}>
-          Entrar
+          Cadastrar
         </Button>
 
         <div className="flex justify-center mt-8">
           <a
-            href="/signup"
+            href="/"
             className="text-sm font-semibold text-zinc-300 hover:text-blue-200 transition ease-linear"
           >
-            Criar conta
+            Já tenho uma conta
           </a>
         </div>
       </form>

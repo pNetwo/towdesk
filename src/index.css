@@ -8,3 +8,9 @@
   --color-blue-100: #0c447c;
   --color-blue-200: #185fa5;
 }
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #18181B inset !important;
+
+ -webkit-text-fill-color: #D4D4D8 !important;
+}
