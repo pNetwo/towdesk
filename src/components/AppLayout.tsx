@@ -49,14 +49,14 @@ export function AppLayout() {
           </div>
         </aside>
 
-        <main className="flex flex-1">
+        <main>
           <Outlet />
         </main>
       </div>
 
       {/* Mobile */}
 
-      <div className="md:hidden flex flex-col">
+      <div className="md:hidden flex flex-col h-screen">
         <div className="bg-blue-100 p-6 flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <img src={logo} alt="logotipo" className="w-14 h-14" />
@@ -80,8 +80,23 @@ export function AppLayout() {
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-1 bg-zinc-300">
           <Outlet />
+        </div>
+
+        <div className=" text-zinc-400 p-6">
+          <nav className="">
+            <ul className="flex gap-4 justify-around items-center text-center">
+              {navItems.map((item) => (
+                <NavItem
+                  key={item.href}
+                  icon={item.icon}
+                  label={item.label}
+                  href={item.href}
+                />
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
