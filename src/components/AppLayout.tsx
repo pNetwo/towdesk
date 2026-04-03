@@ -8,11 +8,11 @@ import { NavItem } from "./NavItem";
 
 export function AppLayout() {
   return (
-    <div>
+    <div className="h-screen">
       {/* Desktop */}
-      <div className="hidden md:flex h-screen">
+      <div className="hidden md:flex h-full">
         <aside className="flex flex-col w-80 bg-blue-100 py-8">
-          <div className="flex justify-center items-center gap-2 px-3">
+          <div className="flex justify-center items-center gap-2">
             <img src={logo} alt="logotipo" className="w-14 h-14" />
             <span className="text-3xl text-white font-bold mt-1">TowDesk</span>
           </div>
@@ -49,7 +49,7 @@ export function AppLayout() {
           </div>
         </aside>
 
-        <main>
+        <main className="flex flex-1">
           <Outlet />
         </main>
       </div>
@@ -80,11 +80,11 @@ export function AppLayout() {
           </div>
         </div>
 
-        <div className="flex flex-1 bg-zinc-300">
+        <div className="flex flex-1 bg-zinc-400">
           <Outlet />
         </div>
 
-        <div className=" text-zinc-400 p-6">
+        <div className="bg-zinc-100 text-zinc-500 p-6">
           <nav className="">
             <ul className="flex gap-4 justify-around items-center text-center">
               {navItems.map((item) => (

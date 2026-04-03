@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router";
 import { NotFound } from "../pages/NotFound";
-import { TowDesk } from "../pages/TowDesk";
 import { AppLayout } from "../components/AppLayout";
+import { WorkOrder } from "../pages/WorkOrders";
 
 export function DeskRoutes() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout/>}>
-        <Route path="/" element={<TowDesk />} />
+        <Route path="/" element={<WorkOrder />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
