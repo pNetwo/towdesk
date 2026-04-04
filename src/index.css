@@ -22,3 +22,7 @@ select {
   background-position: right 0.7rem top 50%;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
