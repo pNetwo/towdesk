@@ -1,8 +1,8 @@
-type Props = React.ComponentProps<"input"> & {
+type Props = React.ComponentProps<"select"> & {
   legend?: string;
 };
 
-export function Select({ legend, type = "text", ...rest }: Props) {
+export function Select({ legend, children, ...rest }: Props) {
   return (
     <fieldset className="flex max-h-20 text-zinc-500 mb-6">
       {legend && (
@@ -10,11 +10,18 @@ export function Select({ legend, type = "text", ...rest }: Props) {
           {legend}
         </legend>
       )}
-      <input
-        {...rest}
-        type={type}
+      <select
         className="w-full h-12 bg-zinc-200 border border-zinc-300 rounded-lg px-3 text-sm outline-none focus-within:border-blue-100"
-      />
+        value=""
+        {...rest}
+      >
+        <option value="" disabled hidden>
+          {" "}
+          Selecione
+        </option>
+
+        {children}
+      </select>
     </fieldset>
   );
 }

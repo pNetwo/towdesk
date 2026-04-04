@@ -11,7 +11,7 @@ export function AppLayout() {
     <div className="h-screen">
       {/* Desktop */}
       <div className="hidden md:flex h-full">
-        <aside className="flex flex-col w-80 bg-blue-100 py-8">
+        <aside className="flex flex-col w-64 bg-blue-100 py-8">
           <div className="flex justify-center items-center gap-2">
             <img src={logo} alt="logotipo" className="w-14 h-14" />
             <span className="text-3xl text-white font-bold mt-1">TowDesk</span>
@@ -19,7 +19,7 @@ export function AppLayout() {
 
           <hr className="border-t border-zinc-400 my-6" />
 
-          <nav className="flex flex-1 mx-6 text-zinc-300">
+          <nav className="flex flex-1 px-2 text-zinc-300">
             <ul className="text-lg flex flex-col gap-3">
               {navItems.map((item) => (
                 <NavItem
