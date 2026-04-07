@@ -49,7 +49,7 @@ export function AppLayout() {
           </div>
         </aside>
 
-        <main className="flex flex-1">
+        <main className="flex flex-1 bg-zinc-300">
           <Outlet />
         </main>
       </div>
@@ -80,7 +80,7 @@ export function AppLayout() {
           </div>
         </div>
 
-        <div className="flex flex-1 bg-zinc-400">
+        <div className="flex flex-1 bg-zinc-300">
           <Outlet />
         </div>
 

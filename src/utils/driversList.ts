@@ -1,11 +1,11 @@
-export type Driver = {
+export type DriverList = {
   id: string;
   name: string;
   phone: string;
   license: string;
 };
 
-export const drivers: Driver[] = [
+export const driversList: DriverList[] = [
   {
     id: "1",
     name: "Carlos Mendes",

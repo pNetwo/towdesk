@@ -1,10 +1,18 @@
 type Props = React.ComponentProps<"input"> & {
   legend?: string;
+  className?: string;
 };
 
-export function InputOrders({ legend, type = "text", ...rest }: Props) {
+export function InputOrders({
+  legend,
+  type = "text",
+  className,
+  ...rest
+}: Props) {
   return (
-    <fieldset className="flex max-h-20 text-zinc-500 font-semibold mb-6">
+    <fieldset
+      className={`flex max-h-20 text-zinc-500 font-semibold mb-6 ${className ?? ""}`}
+    >
       {legend && (
         <legend className="uppercase text-xs mb-2 text-inherit">
           {legend}

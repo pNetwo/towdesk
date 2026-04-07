@@ -1,11 +1,11 @@
-export type Insurer = {
+export type InsurerList = {
   id: string;
   name: string;
   phone: string;
   cnpj: string;
 };
 
-export const insurers: Insurer[] = [
+export const insurersList: InsurerList[] = [
   {
     id: "1",
     name: "Porto Seguro",

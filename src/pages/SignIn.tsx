@@ -29,11 +29,11 @@ export function SignIn() {
           required
           legend="Senha"
           type="password"
-          placeholder="usuario@empresa.com"
+          placeholder="Digite sua senha"
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button type="submit" isLoading={isLoading}>
+        <Button type="submit" className="w-full" isLoading={isLoading}>
           Entrar
         </Button>
 

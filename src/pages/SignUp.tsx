@@ -50,7 +50,7 @@ export function SignUp() {
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
 
-        <Button type="submit" isLoading={isLoading}>
+        <Button type="submit" className="w-full" isLoading={isLoading}>
           Cadastrar
         </Button>
 
