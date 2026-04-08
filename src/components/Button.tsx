@@ -15,7 +15,9 @@ export function Button({
       type={type}
       disabled={isLoading}
       {...rest}
-      className={`flex justify-center items-center h-10 bg-blue-100 rounded-lg text-white cursor-pointer hover:bg-blue-200 transition ease-linear disabled:hover:bg-blue-100 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`flex justify-center items-center h-10 bg-blue-100 rounded-lg text-white cursor-pointer hover:bg-blue-200 transition ease-linear disabled:hover:bg-blue-100 disabled:opacity-50 
+      ${isLoading && "cursor-progress"}  
+      ${className}`}
     >
       {children}
     </button>

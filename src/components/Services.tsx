@@ -14,7 +14,7 @@ type Props = React.ComponentProps<"a"> & {
 export function Services({ data, ...rest }: Props) {
   return (
     <a {...rest}>
-      <div className="grid grid-cols-5 p-3 items-center border-b border-zinc-400">
+      <div className="grid grid-cols-5 p-3 items-center border-b border-zinc-400 hover:bg-blue-50 hover:cursor-pointer transition ease-linear">
         <span className="text-sm font-bold">{data.driver}</span>
         <span className="text-sm text-zinc-500 font-semibold">
           {data.insurer}
@@ -28,8 +28,8 @@ export function Services({ data, ...rest }: Props) {
           {data.isCompleted ? "Concluído" : "Pendente"}
         </span>
 
-        <span className="text-sm font-semibold text-blue-100">
-          {data.valueOS}
+        <span className="text-sm font-semibold text-blue-100 ">
+          R${data.valueOS}
         </span>
       </div>
     </a>

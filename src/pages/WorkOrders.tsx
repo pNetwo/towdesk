@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "../components/Button";
 import { InputOrders } from "../components/InputOrders";
 import { Select } from "../components/Select";
@@ -19,9 +19,14 @@ export function WorkOrder() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const params = useParams<{ id: string }>();
 
   function onSubmit(e: React.SubmitEvent) {
     e.preventDefault();
+
+    if (params.id) {
+      return navigate - 1;
+    }
 
     navigate("/confirm", {
       state: { fromSubmit: true, driver, insurer, travel, valueOS },
@@ -57,6 +62,7 @@ export function WorkOrder() {
                 legend="Motorista"
                 value={driver}
                 onChange={(e) => setDriver(e.target.value)}
+                disabled={!!params.id}
               >
                 {driversList.map((i) => (
                   <option key={i.id} value={i.name}>
@@ -70,6 +76,7 @@ export function WorkOrder() {
                 legend="Seguradora"
                 value={insurer}
                 onChange={(e) => setInsurer(e.target.value)}
+                disabled={!!params.id}
               >
                 {insurersList.map((i) => (
                   <option key={i.id} value={i.name}>
@@ -89,6 +96,7 @@ export function WorkOrder() {
                 min={new Date().toISOString().split("T")[0]}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                disabled={!!params.id}
               />
               <InputOrders
                 required
@@ -97,6 +105,7 @@ export function WorkOrder() {
                 type="number"
                 placeholder="Ex: 42"
                 onChange={(e) => setTravel(e.target.value)}
+                disabled={!!params.id}
               />
               <InputOrders
                 required
@@ -105,6 +114,7 @@ export function WorkOrder() {
                 type="number"
                 placeholder="Ex: 380,00"
                 onChange={(e) => setValueOS(e.target.value)}
+                disabled={!!params.id}
               />
             </div>
 
@@ -121,12 +131,14 @@ export function WorkOrder() {
                   legend="Endereço de origem"
                   placeholder="Cidade - Estado"
                   onChange={(e) => setOriginAddress(e.target.value)}
+                  disabled={!!params.id}
                 />
                 <InputOrders
                   required
                   legend="Endereço de destino"
                   placeholder="Cidade - Estado"
                   onChange={(e) => setDestinationAddress(e.target.value)}
+                  disabled={!!params.id}
                 />
               </div>
 
@@ -146,11 +158,8 @@ export function WorkOrder() {
               </div>
 
               <div className="flex mb-4 justify-end items-end w-full gap-4 mt-8">
-                <Button className="w-40 bg-zinc-400 hover:bg-zinc-400 hover:opacity-85">
-                  <a href="/">Cancelar</a>
-                </Button>
                 <Button type="submit" className="w-40" isLoading={isLoading}>
-                  Cadastrar OS
+                  {params.id ? "Voltar" : "Enviar"}
                 </Button>
               </div>
             </div>

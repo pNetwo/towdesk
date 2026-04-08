@@ -1,15 +1,45 @@
-import { Bell, Plus } from "lucide-react";
+import { Bell, Search } from "lucide-react";
+import { useState } from "react";
+import { formatCurrency } from "../utils/formatCurrency";
+import { Button } from "./Button";
+import { Pagination } from "./Pagination";
+import type { ServicesProps } from "./Services";
 import { Services } from "./Services";
 
+const SERVICE_EXAMPLE = {
+  id: "1",
+  driver: "Carlos Mendes",
+  insurer: "Porto Seguro",
+  travel: "43 km",
+  isCompleted: true,
+  valueOS: formatCurrency(380),
+};
+
 export function Dashboard() {
-  const SERVICE_EXAMPLE = {
-    id: "1",
-    driver: "Paulo Neto",
-    insurer: "Porto Seguro",
-    travel: "43 km",
-    isCompleted: true,
-    valueOS: "R$ 380,00",
-  };
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalOfPage, setTotalOfPage] = useState(10);
+  const [services, setServices] = useState<ServicesProps[]>([SERVICE_EXAMPLE]);
+
+  function fetchServices(e: React.SubmitEvent) {
+    e.preventDefault();
+
+    console.log(search);
+  }
+
+  function handlePagination(action: "next" | "previous") {
+    setPage((prevPage) => {
+      if (action === "next" && prevPage < totalOfPage) {
+        return prevPage + 1;
+      }
+
+      if (action === "previous" && prevPage > 1) {
+        return prevPage - 1;
+      }
+
+      return prevPage;
+    });
+  }
 
   return (
     <div className="w-full">
@@ -47,24 +77,24 @@ export function Dashboard() {
           <div className="flex justify-between items-center p-3">
             <h2 className="text-blue-100 font-semibold">Registros</h2>
 
-            <div className="flex items-center gap-2">
+            <form
+              onSubmit={fetchServices}
+              className="h-10 flex items-center gap-2"
+            >
               <input
                 type="text"
                 placeholder="Pesquisar"
                 className="border border-zinc-400 bg-zinc-300 rounded-md p-2"
+                onChange={(e) => setSearch(e.target.value)}
               />
-              <a
-                href="/"
-                className="p-2 h-10 flex justify-center items-center gap-2 bg-blue-100 text-zinc-200 rounded-lg hover:bg-blue-200 transition ease-linear"
-              >
-                <Plus size={18} />
-                Nova OS
-              </a>
-            </div>
+              <Button type="submit" className="w-10 h-10">
+                <Search />
+              </Button>
+            </form>
           </div>
 
           <div className="bg-zinc-200 border-zinc-400 rounded-lg flex flex-col">
-            <div className="grid grid-cols-5 px-3 gap-4 py-1 border-y border-zinc-400 bg-zinc-300">
+            <div className="grid grid-cols-5 px-3 py-1 border-y border-zinc-400 bg-zinc-300">
               <span className="uppercase text-sm font-semibold text-zinc-500">
                 Motorista
               </span>
@@ -75,29 +105,25 @@ export function Dashboard() {
                 Km
               </span>
               <span className="uppercase text-sm font-semibold text-zinc-500">
-                Concluido
+                Status
               </span>
               <span className="uppercase text-sm font-semibold text-zinc-500">
                 Valor
               </span>
             </div>
 
-            <div className="overflow-y-scroll max-h-85.5 md:max-h-134.5">
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
-              <Services data={SERVICE_EXAMPLE} />
+            <div className="overflow-y-scroll max-h-73 md:max-h-122">
+              {services.map((item) => (
+                <Services key={item.id} data={item} href={`/services/${item.id}`}/>
+              ))}
             </div>
+
+            <Pagination
+              current={page}
+              total={totalOfPage}
+              onNext={() => handlePagination("next")}
+              onPrevious={() => handlePagination("previous")}
+            />
           </div>
         </main>
       </div>
